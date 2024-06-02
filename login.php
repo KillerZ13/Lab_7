@@ -2,7 +2,7 @@
 
 // Replace these with your actual database connection details
 $servername = "localhost";
-$username = "220015";
+$username = "";
 $password = "123";
 $dbname = "Lab_7";
 
