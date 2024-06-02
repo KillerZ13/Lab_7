@@ -1,6 +1,6 @@
 <?php
 
-include 'Database.php';
+include 'database.php';
 include 'User.php';
 
 if (isset($_POST['submit']) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
