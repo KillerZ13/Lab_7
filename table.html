@@ -29,8 +29,32 @@
       </tr>
     </thead>
     <tbody>
-      <!-- Table rows will go here -->
+      <!-- Table rows will be dynamically generated -->
+      <tr>
+        <td>12345</td>
+        <td>John Doe</td>
+        <td>Level 5</td>
+        <td>
+          <button onclick="editRow('12345')">Edit</button>
+          <button onclick="deleteRow('12345')">Delete</button>
+        </td>
+      </tr>
+      <!-- Add more rows as needed -->
     </tbody>
   </table>
+
+  <script>
+    function editRow(matric) {
+      // Implement edit functionality (e.g., redirect to edit page or show modal)
+      console.log('Edit row with Matric:', matric);
+      // Example: window.location.href = 'edit.php?matric=' + matric;
+    }
+
+    function deleteRow(matric) {
+      // Implement delete functionality (e.g., confirm deletion, then delete from DB)
+      console.log('Delete row with Matric:', matric);
+      // Example: window.location.href = 'delete.php?matric=' + matric;
+    }
+  </script>
 </body>
 </html>
