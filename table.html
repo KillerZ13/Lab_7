@@ -1,60 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Panel</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 800px;
+            margin: 50px auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h1 button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            margin: 0 5px;
+        }
+
+        a:hover {
+            color: #ddd;
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            width: 300px;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <h1>Hello, Admin [Logout]</h1>
+    <div class="container">
+        <h1>Hello, ha <button id="logoutBtn">Logout</button></h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Matric</th>
+                    <th>Name</th>
+                    <th>Level</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0200</td>
+                    <td>0200</td>
+                    <td>student</td>
+                    <td>
+                        <a href="#">Update</a>
+                        <a href="#">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>02000</td>
+                    <td>Nur Ariffin Mohd Zin</td>
+                    <td>lecturer</td>
+                    <td>
+                        <a href="#">Update</a>
+                        <a href="#">Delete</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>ha</td>
+                    <td>student</td>
+                    <td>
+                        <a href="#">Update</a>
+                        <a href="#">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Matric</th>
-        <th>Name</th>
-        <th>Level</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Table rows will be dynamically generated -->
-      <tr>
-        <td>123</td>
-        <td>hazim</td>
-        <td>student</td>
-        <td>
-          <button onclick="editRow('12345')">Edit</button>
-          <button onclick="deleteRow('12345')">Delete</button>
-        </td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
+    <!-- Popup Login Form -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closeBtn">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username"><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"><br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
 
-  <script>
-    function editRow(matric) {
-      // Implement edit functionality (e.g., redirect to edit page or show modal)
-      console.log('Edit row with Matric:', matric);
-      // Example: window.location.href = 'edit.php?matric=' + matric;
-    }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var logoutBtn = document.getElementById('logoutBtn');
+            var popup = document.getElementById('popup');
+            var closeBtn = document.getElementById('closeBtn');
 
-    function deleteRow(matric) {
-      // Implement delete functionality (e.g., confirm deletion, then delete from DB)
-      console.log('Delete row with Matric:', matric);
-      // Example: window.location.href = 'delete.php?matric=' + matric;
-    }
-  </script>
+            logoutBtn.addEventListener('click', function () {
+                popup.style.display = 'block';
+            });
+
+            closeBtn.addEventListener('click', function () {
+                popup.style.display = 'none';
+            });
+
+            // Optional: Handle form submission
+            var loginForm = document.getElementById('loginForm');
+            loginForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                // Handle login logic here
+                alert('Login logic would go here.');
+                popup.style.display = 'none'; // Close popup after login
+            });
+        });
+    </script>
 </body>
 </html>
