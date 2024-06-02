@@ -14,8 +14,8 @@ if ($conn->connect_error) {
 }
 
 // Initialize variables to store form data
-$matric = "";
-$password = "";
+$matric = "220015";
+$password = "123";
 
 // Check if form data is submitted via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
