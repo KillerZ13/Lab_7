@@ -1,7 +1,7 @@
 <?php
 // Replace these with your actual database connection details
 $servername = "localhost";
-$username = ""; // Replace with your actual MySQL username
+$username = "220015"; // Replace with your actual MySQL username
 $password = "123";
 $dbname = "Lab_7";
 
