@@ -53,6 +53,12 @@ class User
             $result = $stmt->get_result();
             $user = $result->fetch_assoc();
 
+            if ($user) {
+                return $user;
+            } else {
+                echo "Error fetching user: " . $this->conn->error;
+            }
+
             $stmt->close();
             return $user;
         } else {
