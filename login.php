@@ -1,30 +1,20 @@
-<?php
-session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Lab_7";
+<!DOCTYPE html>
+<html lang="en">
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+<body>
+    <form action="authenticate.php" method="post">
+        <label for="matric">Matric:</label>
+        <input type="text" name="matric" id="matric" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required><br>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+</body>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $matric = $_POST["matric"];
-    $name = $_POST["name"];
-
-    $sql = "SELECT * FROM users WHERE matric='$matric' AND name='$name'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $_SESSION["matric"] = $matric;
-        header("Location: display.php");
-    } else {
-        echo "Invalid credentials";
-    }
-}
-
-$conn->close();
-?>
+</html>
