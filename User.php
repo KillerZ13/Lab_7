@@ -11,27 +11,46 @@ class User
 
     // Create a new user
     public function createUser($matric, $name, $password, $role)
-    {
-        $password = password_hash($password, PASSWORD_DEFAULT);
+{
+    // Check if user already exists
+    $sql = "SELECT * FROM users WHERE matric = ?";
+    $stmt = $this->conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("s", $matric);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        $sql = "INSERT INTO users (matric, name, password, role) VALUES (?, ?, ?, ?)";
-        $stmt = $this->conn->prepare($sql);
-
-        if ($stmt) {
-            $stmt->bind_param("ssss", $matric, $name, $password, $role);
-            $result = $stmt->execute();
-
-            if ($result) {
-                return true;
-            } else {
-                return "Error: " . $stmt->error;
-            }
-
-            $stmt->close();
-        } else {
-            return "Error: " . $this->conn->error;
+        if ($result->num_rows > 0) {
+            return "Error: User with matric $matric already exists.";
         }
+
+        $stmt->close();
+    } else {
+        return "Error: " . $this->conn->error;
     }
+
+    // Hash the password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert new user
+    $sql = "INSERT INTO users (matric, name, password, role) VALUES (?, ?, ?, ?)";
+    $stmt = $this->conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("ssss", $matric, $name, $password, $role);
+        $result = $stmt->execute();
+
+        if ($result) {
+            return true;
+        } else {
+            return "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    } else {
+        return "Error: " . $this->conn->error;
+    }
+}
+
 
     // Read all users
     public function getUsers()
