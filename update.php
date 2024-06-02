@@ -1,5 +1,5 @@
 <?php
-include 'Database.php';
+include 'database.php';
 include 'User.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

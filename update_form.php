@@ -1,5 +1,5 @@
 <?php
-include 'Database.php';
+include 'database.php';
 include 'User.php';
 
 // Check if the form has been submitted
