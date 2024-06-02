@@ -2,8 +2,8 @@
 
 // Replace these with your actual database connection details
 $servername = "localhost";
-$username = "";
-$password = "root";
+$username = "220015";
+$password = "123";
 $dbname = "Lab_7";
 
 // Create connection
