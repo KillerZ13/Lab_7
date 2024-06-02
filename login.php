@@ -1,20 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+// Replace these with your actual database connection details
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$dbname = "your_database_name";
 
-<body>
-    <form action="authenticate.php" method="post">
-        <label for="matric">Matric:</label>
-        <input type="text" name="matric" id="matric" required><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
-</body>
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-</html>
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Get form data
+$matric = $_POST["matric"];
+$password = $_POST["password"];
+
+// Hash the password before storing it in the database
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+// SQL query to check if user exists
+$sql = "SELECT * FROM users WHERE matric='$matric' AND password='$hashed_password'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  // User found, redirect to a welcome page or dashboard
+  header("Location: welcome.php");
+} else {
+  // User not found, display an error message
+  echo "Invalid matric or password";
+}
+
+$conn->close();
