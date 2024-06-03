@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     $matric = $_GET['mtric'];
 a
     // Create an instance of the Database class and get the connection
-    $database = new database();
+    $database = new Database();
     $db = $database->getConnection();
 
     // Create an instance of the User class
