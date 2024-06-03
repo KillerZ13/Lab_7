@@ -5,7 +5,7 @@ include 'User.php';
 
 if (isset($_POST['submit']) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
     // Create database connection
-    $database = new Database();
+    $database = new database();
     $db = $database->getConnection();
 
     // Sanitize inputs using mysqli_real_escape_string
