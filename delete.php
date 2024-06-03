@@ -2,10 +2,13 @@
 include 'database.php';
 include 'User.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "GET") 
+{
+    if(isset($_GET['matric']))
+    {
     // Retrieve the matric value from the POST request
-    $matric = $_GET['matric'];
-
+    $matric = $_GET['mtric'];
+a
     // Create an instance of the Database class and get the connection
     $database = new database();
     $db = $database->getConnection();
@@ -16,4 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     // Close the connection
     $db->close();
+    }
+    else
+    {
+        echo "Matric value is not set in the GET request.";
+    }
 }
+?>
