@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST['role'];
 
     // Create an instance of the Database class and get the connection
-    $database = new Database();
+    $database = new database();
     $db = $database->getConnection();
 
     $user = new User($db);

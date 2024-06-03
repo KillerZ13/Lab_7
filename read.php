@@ -3,7 +3,7 @@ include 'database.php';
 include 'User.php';
 
 // Create an instance of the Database class and get the connection
-$database = new Database();
+$database = new database();
 $db = $database->getConnection();
 
 // Create an instance of the User class
