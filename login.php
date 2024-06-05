@@ -79,7 +79,7 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="authenticate.php" method="post">
+        <form action="read.php" method="post">
             <div class="form-group">
                 <label for="matric">Matric:</label>
                 <input type="text" name="matric" id="matric" required>
